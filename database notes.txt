@@ -1,0 +1,771 @@
+Date-28/10/2022
+****************
+
+SQL:-
+->It means  structure query Language.
+->It is used to perform database operations.
+->Based on database operations SQL is divided in four parts:-
+
+1.DDL(Data Defination Language)
+2.DML(Data Manipulation Language)
+3.DCL(Data control Language)
+4.TCL(Transection control Language)
+
+
+Commands of DDL:-
+
+1.create:-This command is used to create a new database Object.
+
+create table table_name
+create view view_name
+create user user_name
+
+2.alter:- It is used to modify the structure of database object
+3.Drop:- Drop command is used to delete the database object.
+4.truncate:- This command is used to delete all data from the database object.
+5.backup:- It is used to take Backup of Data.
+6.restore:- This command is used to reconstruct the database from its backup.
+
+date:-29/10/2022
+*****************
+
+Commands  of DML(Data manupulation Language):-
+
+1.Insert:-The insert command is used to insert record into database object(Table,View).
+2.Delete:-The delelete command is used to delete a record from the database Object.
+3.Update:- This command is used to Modify record in database object,
+4.Select: It is used to select records from database object(Table,View).
+
+Commands of DCl:-
+-----------------
+
+1.grant:-  It is used to give rights to the Database user.
+2.revoke:-This command is used to Take rights from the database user.it is just opposite to Gran t command.
+3.rename:-rename command is used to changename of database object.
+
+command of TCL:-
+
+1.commit:- commit command is used to save the transection.
+2.rollback:-It work like undo.
+
+***************************************************************************************************
+sqlplus / as sysdba;
+connect system/Prashant@123;
+**************************
+
+->  of create command to create a new user:-
+
+syntax:-
+----------
+
+create user <username> identified by <password>;
+e.g.
+
+create user app2022 identified by test;
+
+-> use of grant command to give rights to user:-
+
+syntax:-
+
+grant <rights> to <username>;
+
+e.g.
+grant dba to app2022;
+
+
+How we create a table:-
+*****************************
+->Use of create command to create a new table:-
+
+Table:-
+--------
+->Table is  a collection of column and rows.
+->Rows are called tuples and columns are clled as a attributes.
+
+Syntax  to create  table:-
+
+create table <tablename>
+(
+<column1> <Datatype>,
+<column2> <Datatype>,
+<column3> <Datatype>
+);
+
+Table name:- Employee
+
+empid			int					PRIMARY KEY
+empname		var char2(30)
+department  varvha2(20)
+salary			int
+
+
+->PRIMARY KEY :-Primary key is a field in a table,which is used to identified each record  uniquely.
+It is atomic and not null.
+
+create table employee
+(
+empid int primary key,
+empname varchar(30),
+department varchar(22),
+salary int
+);
+
+->To acces the table we use following command line:-
+
+desc employee;
+
+->Use of insert command to insert record into table:-
+
+syntax:-
+
+insert into <tablename> values(<value1>,<value2>,<value3>);
+eg:- 
+insert into employee values(1,'Prashant','IT',20000);
+
+use of select command to select record from table:-
+*****************************************************
+
+-> select *from employee; //for select all record in a table
+
+How to insert data in a specific column in a table:-
+******************************************************
+
+syntax:-
+insert into <tablename>(<column1>,<Column2>) values (<value1>,value2>);
+
+ insert into employee(empid,empname,department) values(6,'shubham','Management');
+ 
+ ->Use of select command to select specific command from table:-
+ 
+ select <Column1>,<column2> from <tablename>;
+
+
+
+
+->Use of where clause:-
+************************
+->It is used to specify the condition in SQL statement.
+
+e.g:-
+select * from employee where empid=1;
+
+select * from employee where salary>40000;
+
+
+
+Operators in SQL:-
+
+1. =		equality
+2.>			greater than
+3.<			less than
+4.>=		greater than or equal to
+5.<=		less than or equal to
+6.<>		not equal
+7.in 		compare value in  given values
+8.between 	check wheather given values is available in given range or not
+9.like      This operater is used for pattern matching
+
+
+
+Use of delete command to delete record from the table:-
+*************************************************************
+
+syntax:-
+ delete from <tablename> where <condition>;
+ 
+ e.g:-
+ 
+  delete from employee where salary>30000;
+  
+  
+  use of update command to modify the record of table:-
+  --------------------------------------------------------
+  
+  update<tablename> set <column1>=<value1>,<column2>=<value2> where <condition>;
+  
+  update employee set salary=20000 where empid=3;
+  
+  -----------------------------------------------------------------------------------
+  
+  ->use of truncate command:-
+  
+  syntax:-
+  
+  truncate table <tablename>;
+  
+  e.g.->
+  
+    truncate table employee;
+	
+	Use of drop command:-
+	---------------------------
+	
+	drop table <tablename>;
+	e.g.->
+  
+    drop table employee;
+
+
+
+Task coding
+********************
+
+create table cust_info
+    (
+  cust_id int primary key,
+  cust_name varchar(20),
+  cust_address varchar2(100),
+  cust_connect_date date,
+  contact_no varchar(15)
+   );
+   *************************************************************************************************
+	
+insert into cust_info values(1,'rajeev Singh','lucknow','12-dec-2012','9838505980');
+insert into cust_info values(2,'Jitendra Singh','sitapur','01-jan-2013','9838505980');
+insert into cust_info values(3,'Ravi Singh','baranbanki','15-jan-2013','9936652039');
+insert into cust_info values(4,'priya Singh','lucknow','16-jan-2013','9838505980');
+insert into cust_info values(5,'Brijesh Mishra','barabanki','16-jan-2013','9838505980');
+insert into cust_info values(6,'amit Singh','lucknow','18-march-2013','9838505980');
+
+****************************************************************************************************
+select *from cust_info;
+****************************************************************************************************
+
+select cust_id,cust_name from cust_info;
+*****************************************************************************************************
+
+select cust_id,cust_name,cust_connect_date from cust_info where cust_connect_date>'15-jan-2013';
+*****************************************************************************************************
+select *from cust_info where cust_address='lucknow';
+
+*****************************************************************************************************
+SELECT * FROM cust_info ORDER BY cust_name;
+SELECT * FROM Cust_info ORDER BY cust_name DESC;
+
+
+******************************************************************************************************
+delete from cust_info where cust_id=5;
+
+*******************************************************************************************************
+insert into cust_info(cust_id,cust_name,cust_address,cust_connect_date) values(7,'vibhu','varanasi','15-jan-2013');
+ 
+ *******************************************************************************************************
+ update cust_info set contact_no=0522-6767144 where cust_id=7;
+
+***********************************************************************************************************
+
+Date:-31/10/2022
+
+order By:-
+-> It is used to display record in ascending and Descending Order.
+
+
+alter command:- The alter command is used to modify the structure of database object.
+
+
+create table login
+(
+user_id varchar2(20) primary key,
+password varchar(20)
+);
+
+->Use of alter command to add a new column in a table:-
+
+syntax:-
+
+alter table <tablename> add <column name> <data_type>
+
+ex=
+
+alter table login add usertype varchar2(20);
+
+->Use of alter command to delete the column from table:
+
+syntax:- 
+alter table <tablename> drop column <columnname>;
+
+
+ex:-
+
+alter table login drop column usertype;
+
+
+
+-> Use of alter command to modify the column:-
+
+syntax:-
+
+		alter table <tablename> modify <columnname> <data type>;
+		
+		
+ex:- 
+alter table login modify password varchar2(10);
+
+->Use of alter command to rename the column name:-
+
+syntax:- alter table <tablename> rename column <old _name> to <new_name>;
+
+
+ex:-
+
+	alter table login rename column password to pass;
+	
+	
+Rename command:-
+-> IT is used to chang the name of database object.
+
+syntax:
+
+rename <old_name>to <new_name>
+
+ex:-
+rename login to login_info;
+
+
+to show all the table in a user:-
+syntax:-
+
+select *from tab
+
+
+
+create table employee(
+empid int primary key,
+empname varchar2(30),
+salary number(8)
+);
+
+insert into employee values(1001,'Rajeev',35000);
+insert into employee values(1002,'Priya',30000);
+insert into employee values(1003,'Prashant',50000);
+
+
+*************************************************************************************************************************
+Function of SQL:=
+
+->Function  are always work with select command in Sql.
+
+
+1.sum():- sum function is used to find the sum of values of given column.
+
+syntax:
+
+select sum(salary)"Total Sallary" from employee;
+
+
+2.max():-it is used to find the maximum value in the given column.
+
+
+syntax:-
+
+select max(salary)"Maximum salary" from employee;
+
+
+
+3.max():-it is used to find the minimum value in the given column.
+
+
+syntax:-
+
+select min(salary)"Minimum salary" from employee;
+
+
+Date-01/11/2022
+*************************************************************************************************************************
+
+4.Count():-The count()function in sql is used to count numbers of rows in a table.
+ex:-
+
+select count(*) "No of Employee" from employee;
+
+5.upper():-This function is used to convert string data into upper case.
+ex:-
+select upper(empname) "Employee name" from employee;
+
+6.lower():-This function is used to convert string into lower case.
+select lower(empname)"Employee NAME" from employee;
+
+7.avg():- This function is used to find the average of a column.
+syntax :-
+
+select avg(salary) "average of salary is" from employee;
+
+Nested Query:-
+
+->If you use  a sql query inside another sql query,then it is called nested query .It is also called subquery.
+
+ex1:-
+Write a SQL statement to find a record with largest salary in employee table.
+
+select *from employee where salary=(Select max(Salary) from employee);
+
+ex2:-
+Write a sql query find to a record with 2nd highest salary in employee table:-
+
+select *from employee where salary=(select max(salary) from employee where salary<(select max(salary) from employee)):
+
+
+ex3:
+
+select min(salary) from employee;
+
+ex4:
+
+select *from employee where salary=(select min(Salary) from employee where salary>(Select min(salary) from employee));
+
+
+**********************************************************************************************************************************
+
+What is Join Operations ?
+=>If you want to select data from two tables then you needs to perform join operations .for join operations atleast one column 
+should be common in both tables.
+
+
+Foreign key:-
+
+=> it is a field in a table which works as a primary key in another table.
+=>It is used to establish relationship in two table.
+ 
+ 
+Note:-There can be more than one foreign in a table.
+
+ create table product
+    (
+    pid varchar2(2) primary key,
+    pname varchar2(20),
+    empid varchar(4),
+    foreign key(empid) references empinfo(empid)
+    );
+	
+	
+	insert into product values(1,'printer',1001);
+	insert into product values(2,'scanner',1002);
+	insert into product values(3,'plotter',1002);
+	insert into product values(4,'laptop',1003);
+	insert into product (pid,pname) values(5,'Projector');
+	
+	
+	Natural Join Operations:-
+	***************************
+->select empname,pname from empinfo,product where empinfo.empid=product.empid;
+
+
+Left join operaions:=
+
+->when you perform left join operations then all records of left table are displayed and matching records of 
+right table are displayed.
+
+select empname,pname from empinfo left join product1 on empinfo.empid=product1.empid;
+
+******************************************************************************************
+Task2:-
+
+alter table login_info add hint_ques varchar2(30);
+
+alter table login_info drop column hint_ques;
+
+alter table login_info modify pass varchar2(15);
+
+
+create table employee1
+(
+employee_id number(5) primary key,
+employee_name varchar2(20)
+);
+
+create table orders
+(
+product_id number(5) primary key,
+product varchar2(20),
+employee_id number(5),
+foreign key(employee_id) references employee1(employee_id)
+);
+
+insert into employee1 values (1001,'Karan');
+insert into employee1 values (1002,'Shikhar');
+insert into employee1 values (1003,'Rajan');
+
+insert into orders values(1,'table',1001);
+insert into orders values(2,'chair',1002);
+insert into orders values(3,'Printer',1003);
+
+select employee_name,product from employee1,orders where employee1.employee_id=orders.employee_id;
+
+select employee_name,product from employee1 left join orders on employee1.employee_id=orders.employee_id;
+select employee_name,product from employee1 right join orders on employee1.employee_id=orders.employee_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
